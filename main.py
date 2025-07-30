@@ -78,16 +78,25 @@ class Enemigo:
         self.y = -self.alto
         self.velocidad = random.randint(2, 4)
         
+        try:
+            self.imagen = pygame.image.load("assets/nave1.png")
+            self.imagen = pygame.transform.scale(self.imagen, (self.ancho, self.alto))
+        except:
+            self.imagen = None
+        
+        
     def mover(self):
         self.y += self.velocidad
         
     def dibujar(self, pantalla):
-        # Dibujar enemigo (rectángulo rojo)
-        pygame.draw.rect(pantalla, ROJO, (self.x, self.y, self.ancho, self.alto))
-        # Detalles del enemigo
-        pygame.draw.rect(pantalla, BLANCO, (self.x + 5, self.y + 5, 5, 5))
-        pygame.draw.rect(pantalla, BLANCO, (self.x + 20, self.y + 5, 5, 5))
-        
+        if self.imagen:
+            # Usar imagen
+            pantalla.blit(self.imagen, (self.x, self.y))
+        else:
+            # Fallback: dibujo original
+            pygame.draw.rect(pantalla, ROJO, (self.x, self.y, self.ancho, self.alto))
+            pygame.draw.rect(pantalla, BLANCO, (self.x + 5, self.y + 5, 5, 5))
+            pygame.draw.rect(pantalla, BLANCO, (self.x + 20, self.y + 5, 5, 5))
     def fuera_pantalla(self):
         return self.y > ALTO
         
@@ -167,8 +176,13 @@ class Juego:
                 
     def dibujar(self, pantalla):
         # Limpiar pantalla
-        pantalla.fill(NEGRO)
-        
+        try:
+            imagen = pygame.image.load("assets/worldimage.jpg")
+            imagen = pygame.transform.scale(imagen, (ANCHO, ALTO))
+            pantalla.blit(imagen, (0, 0))
+        except:
+            pantalla.fill(NEGRO)
+
         # Dibujar estrellas de fondo
         for i in range(50):
             x = random.randint(0, ANCHO)
