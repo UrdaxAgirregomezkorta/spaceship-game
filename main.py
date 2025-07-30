@@ -192,7 +192,7 @@ class Juego:
         pantalla.blit(texto_puntaje, (10, 10))
         
         # Dibujar controles
-        texto_controles = pygame.font.Font(None, 24).render("← → Mover | ESPACIO Disparar", True, BLANCO)
+        texto_controles = pygame.font.Font(None, 24).render("<-- --> Mover | ESPACIO Disparar", True, BLANCO)
         pantalla.blit(texto_controles, (10, ALTO - 30))
         
         # Pantalla de fin de juego
