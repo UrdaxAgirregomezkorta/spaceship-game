@@ -30,9 +30,9 @@ git clone https://github.com/UrdaxAgirregomezkorta/spaceship-game.git
 cd spaceship-game
 ```
 
-2. Instala Pygame:
+2. Instala las dependencias:
 ```bash
-pip install pygame
+pip install -r requirements.txt
 ```
 
 ## Como jugar
